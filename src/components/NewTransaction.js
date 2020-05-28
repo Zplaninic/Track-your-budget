@@ -34,6 +34,7 @@ export const NewTransaction = () => {
                     <option value="food">Food</option>
                     <option value="drink">Drink</option>
                     <option value="hobby">Hobby</option>
+                    <option value="salary">Salary</option>
                     <option value="other">Other</option>
           </select>
             </div>
