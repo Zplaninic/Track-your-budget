@@ -7,14 +7,13 @@ const dataSumArray = (array) => {
         }
         data[item.type] += Math.abs(item.amount)
     })
-
     return data;
 }
 
 const createDataForBar = (array) => {
-    
     let data = []
     Object.keys(array).map(item => {
+        // console.log(item)
         let object = {type: item, amount: array[item]}
         data.push(object)
     })
@@ -31,11 +30,32 @@ export const createDataForStackedBar = (array, name) => {
     let result = dataSumArray(array)
     let initialObject = {type: name}
     let data = []
-    let finalObject;
     Object.keys(result).map(item => {
-        finalObject = Object.assign(initialObject, {[item]: result[item]})
+        return data.push({[item]: result[item]})
+        
     })
-
-    data.push(finalObject)
+    data.push(initialObject)
     return data;
 }
+
+export const addDataToBar = (filterData) => {
+    let data = []
+    let inititalObject = {}
+
+    filterData.map((item) => {
+      return Object.assign(inititalObject, {[item.type]: item.amount})
+    })
+    data.push(inititalObject)
+    return data;
+}
+
+export const addDataToStackedBar = (filterData) => {
+    let data = []
+    let inititalObject = {}
+
+    filterData.map((item) => {
+      return Object.assign(inititalObject, item)
+    })
+    data.push(inititalObject)
+    return data;
+  }
