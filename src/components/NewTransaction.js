@@ -7,6 +7,7 @@ export const NewTransaction = () => {
     const [text, setText] = useState('');
     const [amount, setAmount] = useState(0);
     const [type, setType] = useState('food')
+    const [color, setColor] = useState('')
 
     const { addTransaction } = useContext(GlobalContext)
 
@@ -17,7 +18,8 @@ export const NewTransaction = () => {
             id: uuidv4(),
             text, 
             type,
-            amount: +amount
+            amount: +amount,
+            color
         } 
 
         addTransaction(newTransaction)
@@ -30,13 +32,16 @@ export const NewTransaction = () => {
                 <label>
                     Pick type of transaction
                 </label>
-                <select value={type}  onChange={(e) => setType(e.target.value)}>
-                    <option value="food">Food</option>
-                    <option value="drink">Drink</option>
-                    <option value="hobby">Hobby</option>
-                    <option value="salary">Salary</option>
-                    <option value="other">Other</option>
-          </select>
+                <select value={type}  onChange={(e) => { 
+                    setColor(e.target[e.target.selectedIndex].getAttribute('data-color')); 
+                    setType(e.target.value);
+                    }}>
+                    <option value="food" data-color="#f94144">Food</option>
+                    <option value="drink" data-color="#f3722c">Drink</option>
+                    <option value="hobby" data-color="#90be6d">Hobby</option>
+                    <option value="salary" data-color="#f9c74f">Salary</option>
+                    <option value="other" data-color="#577590">Other</option>
+                </select>
             </div>
             <div className="form-control">
                 <label >Text</label>
